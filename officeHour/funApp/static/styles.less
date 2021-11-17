@@ -1,0 +1,40 @@
+body {
+    background-color: cadetblue;
+    
+    main {
+        table, tr, td, th {
+            border: 2px double black;
+        }
+        tr, td, th {
+            padding: .2em;
+        }
+        table {
+            margin: 2em;
+        }
+        .row {
+            align-items: flex-start;
+
+            form {
+                background-color: darkkhaki;
+                padding: 1em;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                margin: 2em;
+
+                section {
+                    display: flex;
+                    margin: .2em;
+                    label {
+                        align-self: flex-start;
+                        width: 150px;
+                    }
+                    input {
+                        align-self: flex-end;
+                    }
+                }
+            }
+        }
+    }
+}

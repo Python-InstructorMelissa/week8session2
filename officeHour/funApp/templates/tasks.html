@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <title>Fun Django App</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome {{user.firstName}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <h1>View Tasks</h1>
+        <button><a href="/tasks/addTask/">Add Task</a></button>
+        <table>
+            <tr>
+                <th>Task Title</th>
+                <th>Actions</th>
+            </tr>
+            {% for t in tasks %}
+                <tr>
+                    <td>{{t.task}}</td>
+                    <td><a href="/tasks/{{t.id}}/">View Task</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+    <footer>
+        {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+    </footer>
+</body>
+</html>

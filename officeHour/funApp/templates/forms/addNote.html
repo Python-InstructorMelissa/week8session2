@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <title>Fun Django App</title>
+</head>
+<body>
+    <header>
+        <h1>Add New Note {{user.firstName}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <div class="row">
+            <form action='/notes/createNote/' method='post'>
+                {% csrf_token %}
+                <section>
+                    <label for='noteTitle'>Note Title: </label>
+                    <input name='noteTitle' type='text'>
+                </section>
+                <section>
+                    <label for='noteText'>Text: </label>
+                    <textarea name="noteText"cols="30" rows="10"></textarea>
+                </section>
+                <input type="hidden" name="user" value='{{user.id}}'>
+                <button>Create Note</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+    </footer>
+</body>
+</html>
