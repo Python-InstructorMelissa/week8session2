@@ -1,0 +1,40 @@
+body {
+  background-color: cadetblue;
+}
+body main table,
+body main tr,
+body main td,
+body main th {
+  border: 2px double black;
+}
+body main tr,
+body main td,
+body main th {
+  padding: 0.2em;
+}
+body main table {
+  margin: 2em;
+}
+body main .row {
+  align-items: flex-start;
+}
+body main .row form {
+  background-color: darkkhaki;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 2em;
+}
+body main .row form section {
+  display: flex;
+  margin: 0.2em;
+}
+body main .row form section label {
+  align-self: flex-start;
+  width: 150px;
+}
+body main .row form section input {
+  align-self: flex-end;
+}

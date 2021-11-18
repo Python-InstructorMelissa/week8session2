@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block menu %}
+    <a href="/">Home</a>
+    {% if user.id > 0 %}
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/tasks/">Tasks</a>
+        <a href="/uploads/">Uploads</a>
+        <button><a href="/logout/">Logout</a></button>
+    {% else %}
+        <button><a href="/logReg">Login</a></button>
+    {% endif %}
+    {% endblock menu %}
+</body>
+</html>
