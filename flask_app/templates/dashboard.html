@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type='images/jpg' href="https://images.craftsnherbs.com/bee/IMG_0990.jpg">
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="message">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <h1>Welcome to your dashboard {{user.firstName}}</h1>
+        <div class="row">
+            <form action="/note/create/" method='post'>
+                <section>
+                    <label for="note">Note: </label>
+                    <input type="text" name="note">
+                </section>
+                <section>
+                    <label for="private">Chose if the note is private or not</label>
+                    <select name="private">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </section>
+                <section>
+                    <input type="hidden" name="user_id" value={{user.id}}>
+                </section>
+                <button>Add Note</button>
+            </form>
+            <div class="column">
+                <table>
+                    <tr>
+                        <th>Note</th>
+                        <th>Privacy</th>
+                        <th>Actions</th>
+                    </tr>
+                    {% for note in notes %}
+                        {% if user.id == note.user_id %}
+                            {% if note.private == 1 %}
+                                <tr>
+                                    <td>{{note.note}}</td>
+                                    <td>Your Private Note</td>
+                                    <td></td>
+                                </tr>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {% for note in notes %}
+                        {% if note.private == 0 %}
+                            <tr>
+                                <td>{{note.note}}</td>
+                                <td>Public Notes</td>
+                                <td></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

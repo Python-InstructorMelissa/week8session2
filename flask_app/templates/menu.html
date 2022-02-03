@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block menu %}
+    <a href="/dashboard">Home</a>
+    {% if user %}
+        <a href="/user/{{user.id}}/list/">Your Lists</a>
+        <a href="/api/looneytunes/">LooneyTunes API</a>
+        <a href="/api/squishies/">Squishies API</a>
+        <a href="/logout/">Logout</a>
+        {% if user.level == 1 %}
+        <a href="/admin/">Admin Dash</a>
+        {% endif %}     
+    {% endif %}
+    {% endblock menu %}
+</body>
+</html>

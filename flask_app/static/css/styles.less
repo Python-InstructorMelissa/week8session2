@@ -1,0 +1,86 @@
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+@bg: #000;
+@font: #fff;
+@message: #a50a0a;
+
+a {
+    text-decoration: none;
+    color: @font;
+    padding: 1em;
+    margin: 1em;
+}
+
+body {
+    .flexcolumn();
+    background-color: @bg;
+    color: @font;
+
+    header {
+        .flexcolumn();
+        margin: .5em;
+
+        nav {
+            .flexrow()
+        }
+    }
+    .messages {
+        background-color: @message;
+        padding: .5em;
+        margin: .5em;
+    }
+    main {
+        .flexcolumn();
+        margin: .5em;
+
+        .row {
+            .flexrow();
+            padding: 1em;
+
+            form {
+                margin: 1em;
+                padding: 1em;
+            }
+
+            .column {
+                .flexcolumn();
+                margin: 1em;
+                padding: 1em;
+
+
+                .row {
+                    .flexrow();
+                    margin: 1em;
+                    padding: 1em;
+
+                }
+            }
+        }
+        .api {
+            .flexrow();
+            padding: .5em;
+            flex-wrap: wrap;
+            
+            div {
+                .flexcolumn();
+                padding: .5em;
+                margin: 1em;
+                border: 3px groove @message;
+
+                img {
+                    max-width: 250px;
+                }
+            }
+        }
+    }
+}
