@@ -31,8 +31,6 @@ async function getTune() {
     }
 }
 
-
-
 async function getSquishy() {
     var response = await fetch(`${squish}`)
     var data = await response.json()
