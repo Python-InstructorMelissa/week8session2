@@ -24,29 +24,53 @@
     </div>
     <main>
         <h1>Welcome {{user.firstName}}</h1>
-        <div class="row">
+        <button id="image">Show your Images</button>
+        <div id="images">
             <h2>Saved Images</h2>
-            {% for image in images %}
-                <div class="column">
-                    <h3>{{image.name}}</h3>
-                    <img src="{{image.img}}" alt="{{image.name}}">
-                    <h4></h4>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="row">
+            <div class="row">
+                {% for image in images %}
+                    <div class="column">
+                        <h3>{{image.name}}</h3>
+                        <img src="{{image.img}}" alt="{{image.name}}">
+                        <h4></h4>
+                    </div>
+                {% endfor %}
+            </div>
             <h2>Uploaded Images</h2>
-            {% for upload in uploads %}
-                <div class="column">
-                    <h3>{{upload.name}}</h3>
-                    <img src="/media/{{upload.img}}" alt="{{upload.name}}">
-                </div>
-            {% endfor %}
+            <div class="row">
+                {% for upload in uploads %}
+                    <div class="column">
+                        <h3>{{upload.name}}</h3>
+                        <img src="/media/{{upload.img}}" alt="{{upload.name}}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <button id="forecast">Show your logged Weather Conditions</button>
+        <div class="row">
+            <div id="temps">
+                <table>
+                    <tr>
+                        <th>City</th>
+                        <th>Temp</th>
+                        <th>Date</th>
+                    </tr>
+                    {% for data in forecasts %}
+                        <tr>
+                            <td>{{data.city}}</td>
+                            <td>{{data.temp}}&#8457;</td>
+                            <td>{{data.createdAt}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </main>
     <footer>
 
     </footer>
+    <script src="{% static 'js/key.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="{% static 'js/scripts.js'%}"></script>
 </body>
 </html>

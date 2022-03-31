@@ -1,0 +1,4 @@
+var keys = {
+    NASAKEY: '1aRkoVUWw3h7ZXmnd9OSWG2MtJUuQW2N6YYUgpat',
+    OPENWEATHER: '8ab82243dc2b9fe4c8e68d061a14e1c4'
+}

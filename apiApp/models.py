@@ -69,3 +69,11 @@ class Upload(models.Model):
     user = models.ForeignKey(User, related_name='userUploads', on_delete=CASCADE)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
+
+class Forecast(models.Model):
+    city = models.CharField(max_length=255)
+    conditions = models.CharField(max_length=255)
+    temp = models.CharField(max_length=255)
+    user = models.ForeignKey(User, related_name='userForcast', on_delete=CASCADE)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)

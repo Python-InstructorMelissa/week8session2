@@ -3,9 +3,11 @@ from django.contrib import messages
 from apiApp.models import *
 import bcrypt
 
+# ---------- Main landing page
 def index(request):
     return render(request, 'index.html')
 
+# ---------- Register / Login Functions
 def register(request):
     if request.method == 'GET':
         return redirect('/')
@@ -46,11 +48,15 @@ def login(request):
     messages.error(request, 'That email is not in our system')
     return redirect('/login/')
 
+
+# ---------- Log Out
 def logout(request):
     request.session.clear()
     messages.error(request, 'You have been logged out')
     return redirect('/')
 
+
+# ---------- Dashboard
 def dashboard(request):
     if 'user_id' not in request.session:
         return redirect('/')
@@ -59,10 +65,13 @@ def dashboard(request):
         'user': user,
         'images': Favorite.objects.all().values(),
         'uploads': Upload.objects.all().values(),
+        'forecasts': Forecast.objects.all().values(),
     }
     print(Upload.objects.all().values())
     return render(request, 'dashboard.html', context)
 
+
+# ---------- Favorites / Images Functions
 def addImages(request):
     if 'user_id' not in request.session:
         return redirect('/')
@@ -71,6 +80,24 @@ def addImages(request):
         'user': user
     }
     return render(request, 'addImages.html', context)
+
+def nasaImage(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    user = User.objects.get(id=request.session['user_id'])
+    context = {
+        'user': user
+    }
+    return render(request, 'nasaImage.html', context)
+
+def looneyToons(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    user = User.objects.get(id=request.session['user_id'])
+    context = {
+        'user': user
+    }
+    return render(request, 'toons.html', context)
 
 def createImage(request):
     Favorite.objects.create(
@@ -87,3 +114,38 @@ def createUpload(request):
         user=User.objects.get(id=request.session['user_id']),
     )
     return redirect('/dashboard/')
+
+
+
+# ---------- Weather Functions
+def weather(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    user = User.objects.get(id=request.session['user_id'])
+    context = {
+        'user': user
+    }
+    return render(request, 'weather.html', context)
+
+def saveWeather(request):
+    Forecast.objects.create(
+        city=request.POST['city'],
+        conditions=request.POST['conditions'],
+        temp=request.POST['temp'],
+        user=User.objects.get(id=request.session['user_id']),
+    )
+    return redirect('/dashboard/')
+
+
+
+
+# ---------- User / Profile Functions
+def users(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
+    user = User.objects.get(id=request.session['user_id'])
+    context = {
+        'you': user,
+        'users': User.objects.all().values(),
+    }
+    return render(request, 'users.html', context)
