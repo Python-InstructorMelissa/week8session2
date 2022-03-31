@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>Images</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to our Favorite Images App</h1>
+        <nav>
+        </nav>
+    </header>
+    <div class="messages">
+        {% if messages %}
+            {% for message in messages %}
+                <h1>{{ message }}</h1>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <main>
+        <div class="row">
+            <form action="/login/" method='post'>
+                {% csrf_token %}
+                <section>
+                    <label for="username">Username: </label>
+                    <input type="text" name='username'>
+                </section>
+                <h2>OR</h2>
+                <section>
+                    <label for="email">Email: </label>
+                    <input type="email" name="email">
+                </section>
+                <section>
+                    <label for="password">Password: </label>
+                    <input type="password" name='password'>
+                </section>
+                <button>Login</button>
+            </form>
+            <form action="/register/" method='post'>
+                {% csrf_token %}
+                <section>
+                    <label for="firstName">First Name: </label>
+                    <input type="text" name="firstName">
+                </section>
+                <section>
+                    <label for="lastName">Last Name: </label>
+                    <input type="text" name='lastName'>
+                </section>
+                <section>
+                    <label for="email">Email: </label>
+                    <input type="email" name="email">
+                </section>
+                <section>
+                    <label for="username">Username: </label>
+                    <input type="text" name="username">
+                </section>
+                <section>
+                    <label for="password">Password: </label>
+                    <input type="password" name="password">
+                </section>
+                <section>
+                    <label for="confirm">Confirm Password: </label>
+                    <input type="password" name="confirm">
+                </section>
+                <button>Register and Login</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="{% static 'js/scripts.js'%}"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>Images</title>
+</head>
+<body>
+    <header>
+        <h1>Favorite Images App</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% if messages %}
+            {% for message in messages %}
+                <h1>{{ message }}</h1>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <main>
+        <h1>Welcome {{user.firstName}}</h1>
+        <form action="/images/create/" method='post'>
+            {% csrf_token %}
+            <section>
+                <label for="name">Name of Image: </label>
+                <input type="text" name="name">
+            </section>
+            <section>
+                <label for="img">Link to Image: </label>
+                <input type="text" name="img">
+            </section>
+            <button>Add Image</button>
+        </form>
+        <form action="/images/upload/" method='post' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <section>
+                <label for="name">Name of Upload</label>
+                <input type="text" name="name">
+            </section>
+            <section>
+                <label for="img">Upload Image</label>
+                <input type="file" name="img" required>
+            </section>
+            <button>Upload an Image</button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="{% static 'js/scripts.js'%}"></script>
+</body>
+</html>
