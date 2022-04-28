@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block menu %}
+    {% if user %}
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/images/add/">Add Images</a>
+        <a href="/logout/">Logout</a>
+    {% endif %}
+    {% endblock menu %}
+</body>
+</html>
