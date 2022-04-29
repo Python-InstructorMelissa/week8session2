@@ -28,6 +28,8 @@ class User(models.Model):
     userUpdatedAt = models.DateTimeField(auto_now=True)
 
     objects = UserManager()
+    def __str__(self):
+        return f'{self.firstName} {self.lastName}'
 
 class Favorite(models.Model):
     name = models.CharField(max_length=255)
@@ -35,3 +37,6 @@ class Favorite(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, related_name='userFavs', on_delete=CASCADE)
+
+    def __str__(self):
+        return f'{self.name}'

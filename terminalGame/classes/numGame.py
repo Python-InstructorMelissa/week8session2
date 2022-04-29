@@ -1,4 +1,5 @@
 import random
+from os import system, name
 from .player import *
 
 class GuessTheNumber:
@@ -55,10 +56,10 @@ class GuessTheNumber:
                 message = print(f"\n{player.name} you have 3 tries to guess the right number\n")
                 round = [1,2,3]
                 for r in round:
-                    print(r)
+                    # print(r)
                     if self.leave == 1:
                         game = False
-                    if r == 1 or 2:
+                    elif r <= 2:
                         message = print(f"ROUND {r}")
                         choice = input(f"\n\n{player.name}, please chose a number between 1-10\n  ")
                         choice = choice.split()

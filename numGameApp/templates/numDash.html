@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>Images</title>
+</head>
+<body>
+    <header>
+        <h1>Num Game</h1>
+        <nav>
+            {% block menu %} {% include 'numMenu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% if messages %}
+            {% for message in messages %}
+                <h1>{{ message }}</h1>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <main>
+        <form action="/numGame/playerName/" method='post'>
+            {% csrf_token %}
+            <section>
+                <label for="player">Your Name:</label>
+                <input type="text" name="player">
+            </section>
+            <button>Submit your name</button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="{% static 'js/scripts.js'%}"></script>
+</body>
+</html>

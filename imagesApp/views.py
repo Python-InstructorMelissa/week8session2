@@ -50,3 +50,11 @@ def logout(request):
     request.session.clear()
     messages.error(request, 'You have been logged out')
     return redirect('/')
+
+def createImage(request):
+    Favorite.objects.create(
+        name=request.POST['name'],
+        img=request.POST['img'],
+        user=User.objects.get(id=request.session['user_id'])
+    )
+    return redirect('/dashboard/')
